@@ -1,0 +1,33 @@
+<div class="bg-gray-50 font-sans antialiased">
+    <div class="min-h-screen flex flex-col items-center justify-center px-6 py-12">
+        <!-- Title Section -->
+        <h1 class="text-5xl font-extrabold text-gray-900 mb-8 text-center">
+            Uploaded Images
+        </h1>
+
+        <!-- Upload Button -->
+        <div class="mb-6">
+            <%= link_to "Upload Image", new_image_path, class: "px-6 py-3 bg-blue-600 text-white font-medium rounded-lg shadow hover:bg-blue-700 transition flex items-center gap-2" if user_signed_in? %>
+            <i class="fas fa-upload"></i> Upload Image
+        </div>
+
+        <!-- Images List -->
+        <ul class="space-y-4">
+            <% @images.each do |image| %>
+                <li class="bg-white shadow-md rounded-lg p-4 flex items-center justify-between w-full max-w-xl mx-auto">
+                    <div class="flex items-center gap-4">
+                        <!-- Image Title with Link -->
+                        <%= link_to image.title, image_path(image), class: "text-xl font-semibold text-gray-800 hover:text-blue-600" %>
+                    </div>
+
+                    <!-- View Icon -->
+                    <div class="flex justify-center items-center">
+                        <%= link_to image_path(image), class: "text-gray-600 hover:text-gray-800" do %>
+                            <i class="fas fa-eye"></i>
+                        <% end %>
+                    </div>
+                </li>
+            <% end %>
+        </ul>
+    </div>
+</div>
